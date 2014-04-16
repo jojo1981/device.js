@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title>Device.js</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script>
+		// device.js config can be overwritten
+		// Do this BEFORE you load device.js!
+		var DEVICEJS_CONFIG = {
+			'showOrientation': true
+		}
+	</script>
+	<script type="text/javascript" src="lib/device.js"></script>
+	<script>
+
+		$(document).ready(function() {
+			var classes = $('html').attr('class');
+			$('#classes').text(classes);
+		});
+	</script>
+</head>
+<body>
+<h1>CSS browser selector</h1>
+<h3>Classes on HTML element:</h3>
+<div id="classes"></div>
+
+<h3>User agent and classes:</h3>
+<script>
+	document.writeln('<p>Custom config:<br />');
+	if(typeof DEVICEJS_CONFIG != 'undefined') {
+		$.each(DEVICEJS_CONFIG, function(key, value) {
+			document.write(key + ': ' + value + '<br />');
+		});
+	} else {
+		document.write('config not set');
+	}
+	document.writeln('</p>');
+
+	document.writeln('<p>'+navigator.userAgent+' - '+document.getElementsByTagName('html')[0].className+'</p>');
+</script>
+</body>
+</html>
